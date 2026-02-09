@@ -43,8 +43,8 @@
       "priority": 4,
       "title": "Core wrappers: accounts",
       "description": "Create src/core/accounts.ts wrapping Account, MaybeAccount, EncodedAccount, DecodedAccount, BaseAccount. These are intersection types (BaseAccount & { address, data }) \u2014 highest value Prettify target.",
-      "status": "pending",
-      "notes": "Source: packages/accounts/src/account.ts. BaseAccount = { executable, lamports, programAddress, space }. Account adds address + data via intersection.",
+      "status": "done",
+      "notes": "COMPLETED. Created src/core/accounts.ts with PrettyAccount, PrettyEncodedAccount, PrettyMaybeAccount, PrettyMaybeEncodedAccount, PrettyBaseAccount. Note: Kit has no 'DecodedAccount' type — Account<TData> with non-Uint8Array TData serves that role. MaybeAccount is a union — Prettify distributes over each variant. All originals re-exported. Typechecks clean.",
       "dependsOn": [
         "T02"
       ]
