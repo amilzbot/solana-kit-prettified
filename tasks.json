@@ -169,8 +169,8 @@
       "priority": 14,
       "title": "Phase 2 review: IDE hover + type compat tests",
       "description": "Same drill as T09/T10 but for plugin types. Focus on client return types \u2014 verify the chained .use() intersection flattens into a readable client shape.",
-      "status": "pending",
-      "notes": "",
+      "status": "done",
+      "notes": "COMPLETED. 21 new type compat tests (51 total, all pass). Created hover-test-plugins.ts (38 type aliases) + capture script. KEY FINDINGS: (1) Client return types flatten from chained .use() intersections into single flat objects with expected properties (rpc, payer, sendTransaction, etc.). (2) use method correctly stripped via Omit. (3) Instruction plans flatten cleanly, removing Readonly<> noise. (4) Transaction plan results flatten but context field still shows Readonly<intersection> internally \u2014 acceptable. (5) DefaultRpcSubscriptionsChannelConfig requires explicit ClusterUrl type arg. (6) All bidirectional assignability tests pass. Quality gate: PASSED.",
       "dependsOn": [
         "T11",
         "T12",
