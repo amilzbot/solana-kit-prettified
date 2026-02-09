@@ -31,8 +31,8 @@
       "priority": 3,
       "title": "Core wrappers: addresses + keys",
       "description": "Create src/core/addresses.ts wrapping Address, ProgramDerivedAddress. Create src/core/keys.ts wrapping Signature, KeyPairSigner, TransactionSigner, MessageSigner. Use shallow Prettify for branded string types if spike shows deep doesn't work.",
-      "status": "pending",
-      "notes": "Address source: packages/addresses/src/address.ts. Keys source: packages/keys/src/. Signature is also branded.",
+      "status": "done",
+      "notes": "COMPLETED. Created src/core/addresses.ts (PrettyAddress, PrettyProgramDerivedAddress, PrettyProgramDerivedAddressBump) and src/core/keys.ts (PrettySignature, PrettySignatureBytes, PrettyKeyPairSigner, PrettyTransactionSigner, PrettyMessageSigner, PrettyTransactionPartialSigner, PrettyTransactionModifyingSigner, PrettyTransactionSendingSigner, PrettyMessagePartialSigner, PrettyMessageModifyingSigner). All branded primitives (Address, Signature, ProgramDerivedAddressBump) pass through Prettify unchanged via primitive guard. KeyPairSigner is the highest-value target here — it's an intersection of MessagePartialSigner & TransactionPartialSigner & { keyPair } that flattens nicely. TransactionSigner and MessageSigner are union types — Prettify distributes over each variant. All originals re-exported. Typechecks clean. Updated index.ts barrel.",
       "dependsOn": [
         "T02"
       ]
