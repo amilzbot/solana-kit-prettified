@@ -119,8 +119,8 @@
       "priority": 10,
       "title": "Phase 1 review: type compatibility tests",
       "description": "Set up vitest or tsd for type testing. Write tests confirming: (a) Pretty* types are assignable to originals, (b) originals are assignable to Pretty* types, (c) branded type discrimination still works (e.g. Address not assignable to Signature). Run in CI.",
-      "status": "pending",
-      "notes": "Use @effect/vitest or tsd or expect-type. Bidirectional assignability is critical \u2014 if Pretty types aren't drop-in replacements, the whole project fails.",
+      "status": "done",
+      "notes": "COMPLETED. Set up vitest + expect-type for compile-time type assertions. 30 tests covering: (a) bidirectional assignability for all Pretty* types across addresses, keys/signers, accounts, instructions, transaction-messages, transactions; (b) generic variants (PrettyAccount<MyData>, PrettyAddress<'abc'>); (c) branded discrimination (Address ≠ Signature, PrettyAddress ≠ PrettySignature, cross-pretty/original). All 30 pass. Note: Kit's Account/MaybeAccount require explicit type args (no defaults) — tests use <Uint8Array> explicitly. Added vitest.config.ts, npm test script. Dev deps: vitest, expect-type.",
       "dependsOn": [
         "T08"
       ]
