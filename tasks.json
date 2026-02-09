@@ -157,8 +157,8 @@
       "priority": 13,
       "title": "Plugin wrappers: individual plugin configs",
       "description": "Wrap config/option types from individual plugin packages: rpc, payer, airdrop, litesvm, sendTransactions, defaultTransactionPlannerAndExecutorFromRpc.",
-      "status": "pending",
-      "notes": "Source: kit-plugins/packages/kit-plugin-*/src/. Each plugin exports its own config types.",
+      "status": "done",
+      "notes": "COMPLETED. Created src/plugins/configs.ts with: PrettyDefaultRpcSubscriptionsChannelConfig, DefaultRpcClientConfig, DefaultLocalhostRpcClientConfig, DefaultLiteSVMClientConfig (extracted from inline factory params for discoverability), DefaultRpcPlannerExecutorConfig (maxConcurrency, payer, priorityFees), DefaultLiteSVMPlannerExecutorConfig (payer, priorityFees). Re-exported AirdropFunction, RpcFromLiteSVM, LiteSVM, DefaultRpcSubscriptionsChannelConfig from their respective packages. Key finding: most plugin configs are simple inline objects (not intersections), so the main value is naming them for documentation/discoverability rather than flattening. Only DefaultRpcSubscriptionsChannelConfig benefits from Prettify (it's a mapped type from Kit). Build produces 32.7KB .d.ts. All 30 tests pass. Typecheck clean.",
       "dependsOn": [
         "T11"
       ]
