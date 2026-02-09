@@ -79,5 +79,9 @@
     "types",
     "IDE",
     "tooltips"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
 }
