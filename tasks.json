@@ -246,8 +246,8 @@
       "priority": 20,
       "title": "CI setup",
       "description": "GitHub Actions workflow: type-check against latest Kit + program client releases. Run type compat tests. Weekly cron to catch breakage.",
-      "status": "pending",
-      "notes": "",
+      "status": "blocked",
+      "notes": "BLOCKED: GH_TOKEN lacks `workflow` scope — cannot push .github/workflows/ files. Workflow file written locally at .github/workflows/ci.yml (2 jobs: typecheck-and-test on Node 20+22, latest-kit compatibility test, weekly cron schedule). Needs Amilz to either: (a) add `workflow` scope to the PAT, or (b) manually push the file, or (c) create the workflow via GitHub UI. File is staged and ready.",
       "dependsOn": [
         "T19"
       ]
@@ -258,8 +258,8 @@
       "priority": 21,
       "title": "README + documentation",
       "description": "Write README with: problem statement, before/after IDE screenshots, installation, usage examples, which types are covered. Add CONTRIBUTING.md.",
-      "status": "pending",
-      "notes": "",
+      "status": "done",
+      "notes": "COMPLETED. README.md: problem statement, 3 before/after examples (Account, CompilableTransactionMessage, KeyPairSigner), install instructions, usage examples (main + token-2022 entry point + raw Prettify), coverage table (core/plugins/programs), how-it-works section explaining primitive guard, type safety section with known limitations, versioning policy. CONTRIBUTING.md: setup, dev commands, pattern for adding new Pretty types, rules (preserve generics, re-export originals, shallow Prettify default, bidirectional tests). Both use real hover output from docs/screenshots/ capture results.",
       "dependsOn": [
         "T19"
       ]
