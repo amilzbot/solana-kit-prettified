@@ -28,7 +28,7 @@
     "test": "vitest run --typecheck"
   },
   "peerDependencies": {
-    "@solana-program/associated-token-account": ">=0.3.0",
+    "@solana-program/memo": ">=0.11.0",
     "@solana-program/system": ">=0.11.0",
     "@solana-program/token": ">=0.10.0",
     "@solana-program/token-2022": "^0.9.0",
@@ -48,17 +48,18 @@
     "@solana-program/token-2022": {
       "optional": true
     },
-    "@solana-program/associated-token-account": {
+    "@solana-program/memo": {
       "optional": true
     }
   },
   "devDependencies": {
+    "@solana-program/memo": "^0.11.0",
     "@solana-program/system": "^0.11.0",
     "@solana-program/token": "^0.10.0",
     "@solana-program/token-2022": "^0.9.0",
     "@solana/kit": "^6.0.1",
-    "@solana/sysvars": "^5.0",
     "@solana/kit-plugins": "^0.3.0",
+    "@solana/sysvars": "^5.0",
     "expect-type": "^1.3.0",
     "tsup": "^8.5.1",
     "tsx": "^4.21.0",
