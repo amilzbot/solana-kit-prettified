@@ -183,8 +183,8 @@
       "priority": 15,
       "title": "Program wrappers: system",
       "description": "Create src/programs/system.ts. Wrap all Codama-generated instruction types from @solana-program/system: TransferSolInstruction, CreateAccountInstruction, AllocateInstruction, AssignInstruction, AdvanceNonceAccountInstruction, etc. Also wrap *Input types. Focus on instruction return types (multi-intersection: Instruction & InstructionWithData & InstructionWithAccounts).",
-      "status": "pending",
-      "notes": "Source: _ref/system/clients/js/src/generated/instructions/. Instructions are: transferSol, createAccount, allocate, allocateWithSeed, assign, assignWithSeed, advanceNonceAccount, authorizeNonceAccount, initializeNonceAccount, withdrawNonceAccount, upgradeNonceAccount, createAccountWithSeed, transferSolWithSeed.",
+      "status": "done",
+      "notes": "COMPLETED. Created src/programs/system.ts with Pretty* wrappers for all 13 system program instructions (TransferSol, CreateAccount, Allocate, AllocateWithSeed, Assign, AssignWithSeed, AdvanceNonceAccount, AuthorizeNonceAccount, InitializeNonceAccount, WithdrawNonceAccount, UpgradeNonceAccount, CreateAccountWithSeed, TransferSolWithSeed). Each instruction gets: PrettyXxxInstruction (multi-intersection flattened — highest value), PrettyXxxInput, PrettyParsedXxxInstruction. Also prettified all InstructionData/InstructionDataArgs types. Account types: Nonce/NonceArgs re-exported as SystemNonce/SystemNonceArgs (and PrettySystemNonce/PrettySystemNonceArgs) to avoid name collision with Nonce branded string from @solana/transaction-messages. Enums (NonceState, NonceVersion) and all builder/parser/codec functions re-exported as value exports. InstructionWithByteDelta is internal to @solana-program/system (not publicly exported) — skipped. Created src/programs/index.ts barrel, updated src/index.ts. Build: 59.9KB .d.ts. All 51 existing tests pass. Typecheck clean.",
       "dependsOn": [
         "T14"
       ]
