@@ -131,8 +131,8 @@
       "priority": 11,
       "title": "Plugin wrappers: client return types",
       "description": "Create src/plugins/clients.ts. Extract and prettify the return types of createDefaultRpcClient, createDefaultLocalhostRpcClient, createDefaultLiteSVMClient. These are chained .use() intersection types \u2014 among the worst tooltip offenders.",
-      "status": "pending",
-      "notes": "Source: kit-plugins/packages/kit-plugins/src/defaults.ts. The return types are built via createEmptyClient().use(rpc()).use(payer()).use(...). May need ReturnType<typeof createDefaultRpcClient> + Prettify.",
+      "status": "done",
+      "notes": "COMPLETED. Created src/plugins/clients.ts with PrettyDefaultRpcClient, PrettyDefaultLocalhostRpcClient, PrettyDefaultLiteSVMClient. Approach: ReturnType<typeof factory> extracts Client<T>/AsyncClient<T>, then a conditional type extracts T from Client/AsyncClient (stripping the `use` method), then Prettify flattens the chained .use() intersection. All three resolve to non-never types with expected properties verified (rpc, payer, sendTransaction, svm, airdrop). Added @solana/kit-plugins as devDependency. Created src/plugins/index.ts barrel. Updated src/index.ts to re-export plugins. Build produces 23KB .d.ts. All 30 existing type tests still pass. Key: Client<T> = T & { use }, so extracting T from the conditional already gives us the clean shape before Prettify flattens it further.",
       "dependsOn": [
         "T09",
         "T10"
