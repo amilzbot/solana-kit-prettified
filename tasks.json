@@ -32,7 +32,7 @@
       "title": "Core wrappers: addresses + keys",
       "description": "Create src/core/addresses.ts wrapping Address, ProgramDerivedAddress. Create src/core/keys.ts wrapping Signature, KeyPairSigner, TransactionSigner, MessageSigner. Use shallow Prettify for branded string types if spike shows deep doesn't work.",
       "status": "done",
-      "notes": "COMPLETED. Created src/core/addresses.ts (PrettyAddress, PrettyProgramDerivedAddress, PrettyProgramDerivedAddressBump) and src/core/keys.ts (PrettySignature, PrettySignatureBytes, PrettyKeyPairSigner, PrettyTransactionSigner, PrettyMessageSigner, PrettyTransactionPartialSigner, PrettyTransactionModifyingSigner, PrettyTransactionSendingSigner, PrettyMessagePartialSigner, PrettyMessageModifyingSigner). All branded primitives (Address, Signature, ProgramDerivedAddressBump) pass through Prettify unchanged via primitive guard. KeyPairSigner is the highest-value target here — it's an intersection of MessagePartialSigner & TransactionPartialSigner & { keyPair } that flattens nicely. TransactionSigner and MessageSigner are union types — Prettify distributes over each variant. All originals re-exported. Typechecks clean. Updated index.ts barrel.",
+      "notes": "COMPLETED. Created src/core/addresses.ts (PrettyAddress, PrettyProgramDerivedAddress, PrettyProgramDerivedAddressBump) and src/core/keys.ts (PrettySignature, PrettySignatureBytes, PrettyKeyPairSigner, PrettyTransactionSigner, PrettyMessageSigner, PrettyTransactionPartialSigner, PrettyTransactionModifyingSigner, PrettyTransactionSendingSigner, PrettyMessagePartialSigner, PrettyMessageModifyingSigner). All branded primitives (Address, Signature, ProgramDerivedAddressBump) pass through Prettify unchanged via primitive guard. KeyPairSigner is the highest-value target here \u2014 it's an intersection of MessagePartialSigner & TransactionPartialSigner & { keyPair } that flattens nicely. TransactionSigner and MessageSigner are union types \u2014 Prettify distributes over each variant. All originals re-exported. Typechecks clean. Updated index.ts barrel.",
       "dependsOn": [
         "T02"
       ]
@@ -44,7 +44,7 @@
       "title": "Core wrappers: accounts",
       "description": "Create src/core/accounts.ts wrapping Account, MaybeAccount, EncodedAccount, DecodedAccount, BaseAccount. These are intersection types (BaseAccount & { address, data }) \u2014 highest value Prettify target.",
       "status": "done",
-      "notes": "COMPLETED. Created src/core/accounts.ts with PrettyAccount, PrettyEncodedAccount, PrettyMaybeAccount, PrettyMaybeEncodedAccount, PrettyBaseAccount. Note: Kit has no 'DecodedAccount' type — Account<TData> with non-Uint8Array TData serves that role. MaybeAccount is a union — Prettify distributes over each variant. All originals re-exported. Typechecks clean.",
+      "notes": "COMPLETED. Created src/core/accounts.ts with PrettyAccount, PrettyEncodedAccount, PrettyMaybeAccount, PrettyMaybeEncodedAccount, PrettyBaseAccount. Note: Kit has no 'DecodedAccount' type \u2014 Account<TData> with non-Uint8Array TData serves that role. MaybeAccount is a union \u2014 Prettify distributes over each variant. All originals re-exported. Typechecks clean.",
       "dependsOn": [
         "T02"
       ]
@@ -56,7 +56,7 @@
       "title": "Core wrappers: instructions",
       "description": "Create src/core/instructions.ts wrapping Instruction, AccountMeta, AccountLookupMeta, InstructionWithAccounts, InstructionWithData. Instruction is an interface (less benefit) but combined types are intersections.",
       "status": "done",
-      "notes": "COMPLETED. Created src/core/instructions.ts with: PrettyAccountMeta, PrettyReadonlyAccount, PrettyWritableAccount, PrettyReadonlySignerAccount, PrettyWritableSignerAccount, PrettyAccountLookupMeta, PrettyReadonlyAccountLookup, PrettyWritableAccountLookup, PrettyInstruction, PrettyInstructionWithAccounts, PrettyInstructionWithData, PrettyCombinedInstruction. The subtype account metas (ReadonlyAccount, WritableAccount, etc.) are intersections of AccountMeta & { role: specific } — good Prettify targets. Added PrettyCombinedInstruction as a convenience type for the common Codama pattern (Instruction & InstructionWithAccounts & InstructionWithData). AccountRole re-exported as enum (no prettification needed). All originals re-exported. Typechecks clean.",
+      "notes": "COMPLETED. Created src/core/instructions.ts with: PrettyAccountMeta, PrettyReadonlyAccount, PrettyWritableAccount, PrettyReadonlySignerAccount, PrettyWritableSignerAccount, PrettyAccountLookupMeta, PrettyReadonlyAccountLookup, PrettyWritableAccountLookup, PrettyInstruction, PrettyInstructionWithAccounts, PrettyInstructionWithData, PrettyCombinedInstruction. The subtype account metas (ReadonlyAccount, WritableAccount, etc.) are intersections of AccountMeta & { role: specific } \u2014 good Prettify targets. Added PrettyCombinedInstruction as a convenience type for the common Codama pattern (Instruction & InstructionWithAccounts & InstructionWithData). AccountRole re-exported as enum (no prettification needed). All originals re-exported. Typechecks clean.",
       "dependsOn": [
         "T02"
       ]
@@ -68,7 +68,7 @@
       "title": "Core wrappers: transaction-messages + transactions",
       "description": "Create src/core/transaction-messages.ts wrapping TransactionMessage, TransactionMessageWithFeePayer, CompilableTransactionMessage. Create src/core/transactions.ts wrapping Transaction, FullySignedTransaction.",
       "status": "done",
-      "notes": "COMPLETED. Created src/core/transaction-messages.ts with: PrettyTransactionMessage, PrettyTransactionMessageWithFeePayer, PrettyBlockhashLifetimeConstraint, PrettyTransactionMessageWithBlockhashLifetime, PrettyNonceLifetimeConstraint, PrettyTransactionMessageWithDurableNonceLifetime, PrettyTransactionMessageWithLifetime, PrettyCompilableTransactionMessage (highest-value: flattens TransactionMessage & FeePayer & BlockhashLifetime intersection), PrettyCompilableTransactionMessageWithDurableNonce. Created src/core/transactions.ts with: PrettyTransaction, PrettyTransactionBlockhashLifetime, PrettyTransactionDurableNonceLifetime, PrettyTransactionWithLifetime, PrettyTransactionWithBlockhashLifetime, PrettyTransactionWithDurableNonceLifetime, PrettyFullySignedTransactionWithBlockhashLifetime, PrettySendableTransactionWithBlockhashLifetime. Nonce (branded string) passes through Prettify unchanged via primitive guard. FullySignedTransaction is a NominalType brand — also passes through. TransactionMessageBytes and Base64EncodedWireTransaction are branded Uint8Array/string — re-exported only. All originals re-exported. Typechecks clean.",
+      "notes": "COMPLETED. Created src/core/transaction-messages.ts with: PrettyTransactionMessage, PrettyTransactionMessageWithFeePayer, PrettyBlockhashLifetimeConstraint, PrettyTransactionMessageWithBlockhashLifetime, PrettyNonceLifetimeConstraint, PrettyTransactionMessageWithDurableNonceLifetime, PrettyTransactionMessageWithLifetime, PrettyCompilableTransactionMessage (highest-value: flattens TransactionMessage & FeePayer & BlockhashLifetime intersection), PrettyCompilableTransactionMessageWithDurableNonce. Created src/core/transactions.ts with: PrettyTransaction, PrettyTransactionBlockhashLifetime, PrettyTransactionDurableNonceLifetime, PrettyTransactionWithLifetime, PrettyTransactionWithBlockhashLifetime, PrettyTransactionWithDurableNonceLifetime, PrettyFullySignedTransactionWithBlockhashLifetime, PrettySendableTransactionWithBlockhashLifetime. Nonce (branded string) passes through Prettify unchanged via primitive guard. FullySignedTransaction is a NominalType brand \u2014 also passes through. TransactionMessageBytes and Base64EncodedWireTransaction are branded Uint8Array/string \u2014 re-exported only. All originals re-exported. Typechecks clean.",
       "dependsOn": [
         "T02"
       ]
@@ -80,7 +80,7 @@
       "title": "Core wrappers: rpc + codecs",
       "description": "Create src/core/rpc.ts wrapping Rpc, RpcSubscriptions, SolanaRpcApi, Lamports, Commitment, Slot, UnixTimestamp. Create src/core/codecs.ts wrapping Encoder, Decoder, Codec.",
       "status": "done",
-      "notes": "COMPLETED. Created src/core/rpc.ts and src/core/codecs.ts. Key findings: (1) Branded primitives (Lamports, MicroLamports, UnixTimestamp) pass through Prettify unchanged via primitive guard — re-exported directly. (2) Simple aliases (Slot, Epoch, Commitment) need no prettification — just re-exports. (3) Rpc<T>, RpcApi<T>, PendingRpcRequest<T> are mapped/generic types, not intersections — Prettify adds no tooltip value, re-exported only. (4) SolanaRpcResponse is the only type worth prettifying (Readonly intersection flattens nicely) — created PrettySolanaRpcResponse<TValue>. (5) Cluster URL types (MainnetUrl, DevnetUrl, TestnetUrl) are branded strings — pass through unchanged. (6) Codec types (Encoder, Decoder, Codec + Fixed/Variable variants) are union types of clean interfaces — no prettification value, re-exported for convenience. Also re-exported coercion functions (lamports, mainnet, devnet, testnet, etc.) and codec utilities (createEncoder, isFixedSize, etc.). Updated index.ts barrel. Typechecks clean.",
+      "notes": "COMPLETED. Created src/core/rpc.ts and src/core/codecs.ts. Key findings: (1) Branded primitives (Lamports, MicroLamports, UnixTimestamp) pass through Prettify unchanged via primitive guard \u2014 re-exported directly. (2) Simple aliases (Slot, Epoch, Commitment) need no prettification \u2014 just re-exports. (3) Rpc<T>, RpcApi<T>, PendingRpcRequest<T> are mapped/generic types, not intersections \u2014 Prettify adds no tooltip value, re-exported only. (4) SolanaRpcResponse is the only type worth prettifying (Readonly intersection flattens nicely) \u2014 created PrettySolanaRpcResponse<TValue>. (5) Cluster URL types (MainnetUrl, DevnetUrl, TestnetUrl) are branded strings \u2014 pass through unchanged. (6) Codec types (Encoder, Decoder, Codec + Fixed/Variable variants) are union types of clean interfaces \u2014 no prettification value, re-exported for convenience. Also re-exported coercion functions (lamports, mainnet, devnet, testnet, etc.) and codec utilities (createEncoder, isFixedSize, etc.). Updated index.ts barrel. Typechecks clean.",
       "dependsOn": [
         "T02"
       ]
@@ -91,8 +91,8 @@
       "priority": 8,
       "title": "Core index + re-exports",
       "description": "Wire up src/core/index.ts barrel file and update src/index.ts to re-export all Phase 1 types. Ensure tree-shaking friendly exports.",
-      "status": "pending",
-      "notes": "",
+      "status": "done",
+      "notes": "COMPLETED. Created src/core/index.ts barrel re-exporting all 8 core modules. Simplified src/index.ts to export Prettify/PrettifyDeep from prettify.ts + everything from core/index.js. Build produces ESM+CJS+DTS (19.5KB .d.ts). Typecheck and build both clean. Tree-shaking friendly: all exports are type-only re-exports through barrel files.",
       "dependsOn": [
         "T03",
         "T04",
