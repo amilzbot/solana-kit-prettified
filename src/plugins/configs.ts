@@ -11,8 +11,8 @@ import type {
   MicroLamports,
   TransactionSigner,
 } from '@solana/kit';
-import type { AirdropFunction } from '@solana/kit-plugin-airdrop';
-import type { RpcFromLiteSVM, LiteSVM } from '@solana/kit-plugin-litesvm';
+import type { AirdropFunction } from '@solana/kit-plugins';
+import type { RpcFromLiteSVM, LiteSVM } from '@solana/kit-plugins';
 import type { Prettify } from '../prettify.js';
 
 // --- RPC plugin config ---
@@ -88,13 +88,13 @@ export type DefaultLiteSVMPlannerExecutorConfig = {
 // --- Re-exports from individual plugin packages ---
 
 /** Function type for the `airdrop` method added to clients by the airdrop plugin. */
-export type { AirdropFunction } from '@solana/kit-plugin-airdrop';
+export type { AirdropFunction } from '@solana/kit-plugins';
 
 /** The RPC subset provided by the LiteSVM plugin. */
-export type { RpcFromLiteSVM } from '@solana/kit-plugin-litesvm';
+export type { RpcFromLiteSVM } from '@solana/kit-plugins';
 
 /** The LiteSVM instance type. */
-export type { LiteSVM } from '@solana/kit-plugin-litesvm';
+export type { LiteSVM } from '@solana/kit-plugins';
 
 /** RPC subscriptions channel config from Kit. */
 export type { DefaultRpcSubscriptionsChannelConfig } from '@solana/kit';
