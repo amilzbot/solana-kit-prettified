@@ -207,8 +207,8 @@
       "priority": 17,
       "title": "Program wrappers: token-2022",
       "description": "Create src/programs/token-2022.ts. Extend token wrappers with token-2022 extension types: TransferFeeConfig, ConfidentialTransferMint, InterestBearingConfig, MintCloseAuthority, DefaultAccountState, etc.",
-      "status": "pending",
-      "notes": "Source: _ref/token-2022/clients/js-v1/src/generated/. Most complex program — many extension types.",
+      "status": "done",
+      "notes": "COMPLETED. Created src/programs/token-2022.ts with Pretty* wrappers for all 94 token-2022 instructions (including 72 extension-specific: confidential transfers, transfer fees, metadata/groups/pointers, CPI guard, memo transfers, pausable, permissioned burn, scaled UI amount, non-transferable, immutable owner, interest-bearing, transfer hooks, unwrap lamports, etc.) plus 22 base token instructions (Transfer, Approve, Burn, etc. with TOKEN_2022_PROGRAM_ADDRESS defaults). Account types: PrettyToken2022Mint/MintArgs, PrettyToken2022Account/Args, PrettyToken2022Multisig/MultisigArgs — aliased with Token2022 prefix to avoid collision with base token. Extension types: PrettyTransferFee/Args, PrettyDecryptableBalance/Args, PrettyEncryptedBalance/Args. ARCHITECTURE DECISION: token-2022 is NOT in the barrel re-export (programs/index.ts) due to massive name collisions with base token program (22 shared instructions, account codecs/fetchers, enum types). Instead, exposed as separate entry point: `import { ... } from 'solana-kit-prettified/token-2022'`. Added tsup multi-entry build + package.json exports map. Used code generator (gen-token22-full.ts) to extract type signatures from 94 instruction source files and produce wrappers. Key fixes: TokenMetadataField is a discriminated union (not enum) — excluded from value exports; getInitializeInstructionsForExtensions renamed to getPreInitializeInstructionsForMintExtensions in newer API; ASSOCIATED_TOKEN_PROGRAM_ADDRESS imported for ATA instruction generics. Build: 184KB .d.ts for token-2022 entry. All 51 existing tests pass. Typecheck clean.",
       "dependsOn": [
         "T16"
       ]
