@@ -11,6 +11,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
+    },
+    "./token-2022": {
+      "types": "./dist/programs/token-2022.d.ts",
+      "import": "./dist/programs/token-2022.mjs",
+      "require": "./dist/programs/token-2022.js"
     }
   },
   "files": [
