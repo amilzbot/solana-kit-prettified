@@ -9,8 +9,8 @@
       "priority": 1,
       "title": "Project scaffolding",
       "description": "Init package.json (name: solana-kit-prettified), tsconfig.json (strict, declaration, declarationMap), src/ directory structure. Add @solana/kit, @solana/kit-plugins, @solana-program/system, @solana-program/token-2022, @solana-program/associated-token-account as peer deps. Set up build with tsup or tsc.",
-      "status": "pending",
-      "notes": "",
+      "status": "done",
+      "notes": "Scaffolded: package.json with peer deps (@solana/kit >=6, kit-plugins, system, token-2022, ATA — all optional except kit), tsconfig (strict, declaration, declarationMap, ES2022, bundler resolution, verbatimModuleSyntax), tsup config (cjs+esm+dts), src/ with prettify.ts (Prettify + PrettifyDeep utilities) and index.ts barrel, .gitignore. Typechecks clean. Kit plugins and program deps marked optional in peerDependenciesMeta.",
       "dependsOn": []
     },
     {

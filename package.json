@@ -1,0 +1,56 @@
+{
+  "name": "solana-kit-prettified",
+  "version": "0.1.0",
+  "description": "Prettified type wrappers for @solana/kit — flattened IDE tooltips without losing type safety",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@solana/kit": ">=6.0.0",
+    "@solana/kit-plugins": ">=0.3.0",
+    "@solana-program/system": ">=0.11.0",
+    "@solana-program/token-2022": ">=0.9.0",
+    "@solana-program/associated-token-account": ">=0.3.0"
+  },
+  "peerDependenciesMeta": {
+    "@solana/kit-plugins": { "optional": true },
+    "@solana-program/system": { "optional": true },
+    "@solana-program/token-2022": { "optional": true },
+    "@solana-program/associated-token-account": { "optional": true }
+  },
+  "devDependencies": {
+    "@solana/kit": "^6.0.1",
+    "tsup": "^8.0.0",
+    "typescript": "^5.7.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amilzbot/solana-kit-prettified.git"
+  },
+  "keywords": [
+    "solana",
+    "kit",
+    "typescript",
+    "prettify",
+    "types",
+    "IDE",
+    "tooltips"
+  ]
+}
