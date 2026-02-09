@@ -219,8 +219,8 @@
       "priority": 18,
       "title": "Program wrappers: associated-token-account + memo",
       "description": "Create src/programs/associated-token.ts for ATA instruction types. Optionally add memo if worthwhile.",
-      "status": "pending",
-      "notes": "",
+      "status": "done",
+      "notes": "COMPLETED. Created src/programs/associated-token.ts with Pretty* wrappers for all 3 ATA instructions (CreateAssociatedToken, CreateAssociatedTokenIdempotent, RecoverNestedAssociatedToken) — each with Instruction, Input, AsyncInput, InstructionData, InstructionDataArgs, and Parsed variants. Re-exported findAssociatedTokenPda, ASSOCIATED_TOKEN_PROGRAM_ADDRESS, AssociatedTokenInstruction enum, all builders/codecs/parsers, and helper instruction plans (getTransferToATAInstructionPlan, getMintToATAInstructionPlan + async variants). KEY FINDING: @solana-program/associated-token-account does NOT exist as a separate npm package — ATA types live inside @solana-program/token. Removed the bogus peer dep. Created src/programs/memo.ts with Pretty* wrappers for AddMemo (only instruction in the Memo program). Added @solana-program/memo as optional peer dep + dev dep. Updated programs/index.ts barrel. Build: 122KB .d.ts. All 51 tests pass. Typecheck clean.",
       "dependsOn": [
         "T14"
       ]
