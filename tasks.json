@@ -10,7 +10,7 @@
       "title": "Project scaffolding",
       "description": "Init package.json (name: solana-kit-prettified), tsconfig.json (strict, declaration, declarationMap), src/ directory structure. Add @solana/kit, @solana/kit-plugins, @solana-program/system, @solana-program/token-2022, @solana-program/associated-token-account as peer deps. Set up build with tsup or tsc.",
       "status": "done",
-      "notes": "Scaffolded: package.json with peer deps (@solana/kit >=6, kit-plugins, system, token-2022, ATA — all optional except kit), tsconfig (strict, declaration, declarationMap, ES2022, bundler resolution, verbatimModuleSyntax), tsup config (cjs+esm+dts), src/ with prettify.ts (Prettify + PrettifyDeep utilities) and index.ts barrel, .gitignore. Typechecks clean. Kit plugins and program deps marked optional in peerDependenciesMeta.",
+      "notes": "Scaffolded: package.json with peer deps (@solana/kit >=6, kit-plugins, system, token-2022, ATA \u2014 all optional except kit), tsconfig (strict, declaration, declarationMap, ES2022, bundler resolution, verbatimModuleSyntax), tsup config (cjs+esm+dts), src/ with prettify.ts (Prettify + PrettifyDeep utilities) and index.ts barrel, .gitignore. Typechecks clean. Kit plugins and program deps marked optional in peerDependenciesMeta.",
       "dependsOn": []
     },
     {
@@ -19,9 +19,11 @@
       "priority": 2,
       "title": "Prettify utility + branded type spike",
       "description": "Implement Prettify<T> and PrettifyDeep<T> in src/prettify.ts. Create spike test file that applies Prettify to: Address, Signature, Lamports, Account, Instruction, TransactionMessage. Verify (a) branded properties are preserved, (b) hover shows flat shape, (c) types remain assignable to originals. Document findings in PLAN.md under a new 'Spike Results' section.",
-      "status": "pending",
-      "notes": "Kit uses property-based brands (NominalType) not unique symbol — likely safe but must verify. Key concern: Address = Brand<EncodedString<string, 'base58'>, 'Address'> intersects with string primitive. Prettify can only map object keys, not primitives.",
-      "dependsOn": ["T01"]
+      "status": "done",
+      "notes": "COMPLETED. Key finding: naive Prettify strips primitive bases from branded types (Address, Lamports, Signature). Fix: added primitive guard \u2014 if T extends string|number|bigint|boolean|symbol, return T unchanged. All tests pass: (a) branded properties preserved, (b) bidirectional assignability for Account, CombinedInstruction, TransactionMessageWithFeePayer, (c) brand discrimination preserved (Address \u2260 Signature after prettify), (d) PrettifyDeep works with same guard. Spike file: src/spike.ts. Findings documented in PLAN.md under Spike Results.",
+      "dependsOn": [
+        "T01"
+      ]
     },
     {
       "id": "T03",
@@ -31,17 +33,21 @@
       "description": "Create src/core/addresses.ts wrapping Address, ProgramDerivedAddress. Create src/core/keys.ts wrapping Signature, KeyPairSigner, TransactionSigner, MessageSigner. Use shallow Prettify for branded string types if spike shows deep doesn't work.",
       "status": "pending",
       "notes": "Address source: packages/addresses/src/address.ts. Keys source: packages/keys/src/. Signature is also branded.",
-      "dependsOn": ["T02"]
+      "dependsOn": [
+        "T02"
+      ]
     },
     {
       "id": "T04",
       "phase": 1,
       "priority": 4,
       "title": "Core wrappers: accounts",
-      "description": "Create src/core/accounts.ts wrapping Account, MaybeAccount, EncodedAccount, DecodedAccount, BaseAccount. These are intersection types (BaseAccount & { address, data }) — highest value Prettify target.",
+      "description": "Create src/core/accounts.ts wrapping Account, MaybeAccount, EncodedAccount, DecodedAccount, BaseAccount. These are intersection types (BaseAccount & { address, data }) \u2014 highest value Prettify target.",
       "status": "pending",
       "notes": "Source: packages/accounts/src/account.ts. BaseAccount = { executable, lamports, programAddress, space }. Account adds address + data via intersection.",
-      "dependsOn": ["T02"]
+      "dependsOn": [
+        "T02"
+      ]
     },
     {
       "id": "T05",
@@ -51,7 +57,9 @@
       "description": "Create src/core/instructions.ts wrapping Instruction, AccountMeta, AccountLookupMeta, InstructionWithAccounts, InstructionWithData. Instruction is an interface (less benefit) but combined types are intersections.",
       "status": "pending",
       "notes": "Source: packages/instructions/src/. Instruction interface has accounts?, data?, programAddress. The combined types (InstructionWithAccounts & InstructionWithData) are the real targets.",
-      "dependsOn": ["T02"]
+      "dependsOn": [
+        "T02"
+      ]
     },
     {
       "id": "T06",
@@ -61,7 +69,9 @@
       "description": "Create src/core/transaction-messages.ts wrapping TransactionMessage, TransactionMessageWithFeePayer, CompilableTransactionMessage. Create src/core/transactions.ts wrapping Transaction, FullySignedTransaction.",
       "status": "pending",
       "notes": "TransactionMessage source: packages/transaction-messages/src/transaction-message.ts. It's a union of LegacyTransactionMessage | V0TransactionMessage. TransactionMessageWithFeePayer adds feePayer via intersection.",
-      "dependsOn": ["T02"]
+      "dependsOn": [
+        "T02"
+      ]
     },
     {
       "id": "T07",
@@ -70,8 +80,10 @@
       "title": "Core wrappers: rpc + codecs",
       "description": "Create src/core/rpc.ts wrapping Rpc, RpcSubscriptions, SolanaRpcApi, Lamports, Commitment, Slot, UnixTimestamp. Create src/core/codecs.ts wrapping Encoder, Decoder, Codec.",
       "status": "pending",
-      "notes": "Lamports is branded bigint — same concern as Address with primitives. Rpc types are heavily generic.",
-      "dependsOn": ["T02"]
+      "notes": "Lamports is branded bigint \u2014 same concern as Address with primitives. Rpc types are heavily generic.",
+      "dependsOn": [
+        "T02"
+      ]
     },
     {
       "id": "T08",
@@ -81,7 +93,13 @@
       "description": "Wire up src/core/index.ts barrel file and update src/index.ts to re-export all Phase 1 types. Ensure tree-shaking friendly exports.",
       "status": "pending",
       "notes": "",
-      "dependsOn": ["T03", "T04", "T05", "T06", "T07"]
+      "dependsOn": [
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07"
+      ]
     },
     {
       "id": "T09",
@@ -90,8 +108,10 @@
       "title": "Phase 1 review: IDE hover testing",
       "description": "Create examples/hover-test.ts that imports every Pretty* type and uses them in realistic scenarios (fetch account, build instruction, send transaction). Open in VS Code, verify hover tooltips show flattened shapes. Take before/after screenshots and save to docs/screenshots/.",
       "status": "pending",
-      "notes": "This is the subjective quality gate — if hover doesn't look meaningfully better, reconsider approach before continuing.",
-      "dependsOn": ["T08"]
+      "notes": "This is the subjective quality gate \u2014 if hover doesn't look meaningfully better, reconsider approach before continuing.",
+      "dependsOn": [
+        "T08"
+      ]
     },
     {
       "id": "T10",
@@ -100,18 +120,23 @@
       "title": "Phase 1 review: type compatibility tests",
       "description": "Set up vitest or tsd for type testing. Write tests confirming: (a) Pretty* types are assignable to originals, (b) originals are assignable to Pretty* types, (c) branded type discrimination still works (e.g. Address not assignable to Signature). Run in CI.",
       "status": "pending",
-      "notes": "Use @effect/vitest or tsd or expect-type. Bidirectional assignability is critical — if Pretty types aren't drop-in replacements, the whole project fails.",
-      "dependsOn": ["T08"]
+      "notes": "Use @effect/vitest or tsd or expect-type. Bidirectional assignability is critical \u2014 if Pretty types aren't drop-in replacements, the whole project fails.",
+      "dependsOn": [
+        "T08"
+      ]
     },
     {
       "id": "T11",
       "phase": 2,
       "priority": 11,
       "title": "Plugin wrappers: client return types",
-      "description": "Create src/plugins/clients.ts. Extract and prettify the return types of createDefaultRpcClient, createDefaultLocalhostRpcClient, createDefaultLiteSVMClient. These are chained .use() intersection types — among the worst tooltip offenders.",
+      "description": "Create src/plugins/clients.ts. Extract and prettify the return types of createDefaultRpcClient, createDefaultLocalhostRpcClient, createDefaultLiteSVMClient. These are chained .use() intersection types \u2014 among the worst tooltip offenders.",
       "status": "pending",
       "notes": "Source: kit-plugins/packages/kit-plugins/src/defaults.ts. The return types are built via createEmptyClient().use(rpc()).use(payer()).use(...). May need ReturnType<typeof createDefaultRpcClient> + Prettify.",
-      "dependsOn": ["T09", "T10"]
+      "dependsOn": [
+        "T09",
+        "T10"
+      ]
     },
     {
       "id": "T12",
@@ -120,8 +145,11 @@
       "title": "Plugin wrappers: plans + executor",
       "description": "Create src/plugins/plans.ts wrapping TransactionPlan, SingleTransactionPlan, ParallelTransactionPlan, SequentialTransactionPlan, TransactionPlanResult, TransactionPlanExecutor, TransactionPlanExecutorConfig.",
       "status": "pending",
-      "notes": "Source: kit/packages/instruction-plans/src/. TransactionPlan is a recursive union. Plan types use Readonly<{}> objects — good Prettify candidates.",
-      "dependsOn": ["T09", "T10"]
+      "notes": "Source: kit/packages/instruction-plans/src/. TransactionPlan is a recursive union. Plan types use Readonly<{}> objects \u2014 good Prettify candidates.",
+      "dependsOn": [
+        "T09",
+        "T10"
+      ]
     },
     {
       "id": "T13",
@@ -131,17 +159,23 @@
       "description": "Wrap config/option types from individual plugin packages: rpc, payer, airdrop, litesvm, sendTransactions, defaultTransactionPlannerAndExecutorFromRpc.",
       "status": "pending",
       "notes": "Source: kit-plugins/packages/kit-plugin-*/src/. Each plugin exports its own config types.",
-      "dependsOn": ["T11"]
+      "dependsOn": [
+        "T11"
+      ]
     },
     {
       "id": "T14",
       "phase": 2,
       "priority": 14,
       "title": "Phase 2 review: IDE hover + type compat tests",
-      "description": "Same drill as T09/T10 but for plugin types. Focus on client return types — verify the chained .use() intersection flattens into a readable client shape.",
+      "description": "Same drill as T09/T10 but for plugin types. Focus on client return types \u2014 verify the chained .use() intersection flattens into a readable client shape.",
       "status": "pending",
       "notes": "",
-      "dependsOn": ["T11", "T12", "T13"]
+      "dependsOn": [
+        "T11",
+        "T12",
+        "T13"
+      ]
     },
     {
       "id": "T15",
@@ -151,7 +185,9 @@
       "description": "Create src/programs/system.ts. Wrap all Codama-generated instruction types from @solana-program/system: TransferSolInstruction, CreateAccountInstruction, AllocateInstruction, AssignInstruction, AdvanceNonceAccountInstruction, etc. Also wrap *Input types. Focus on instruction return types (multi-intersection: Instruction & InstructionWithData & InstructionWithAccounts).",
       "status": "pending",
       "notes": "Source: _ref/system/clients/js/src/generated/instructions/. Instructions are: transferSol, createAccount, allocate, allocateWithSeed, assign, assignWithSeed, advanceNonceAccount, authorizeNonceAccount, initializeNonceAccount, withdrawNonceAccount, upgradeNonceAccount, createAccountWithSeed, transferSolWithSeed.",
-      "dependsOn": ["T14"]
+      "dependsOn": [
+        "T14"
+      ]
     },
     {
       "id": "T16",
@@ -161,7 +197,9 @@
       "description": "Create src/programs/token.ts. Wrap instruction types + Mint and Token (token account) decoded account types from @solana-program/token.",
       "status": "pending",
       "notes": "Token and Token-2022 share similar structures. Do token first, then extend for 2022.",
-      "dependsOn": ["T14"]
+      "dependsOn": [
+        "T14"
+      ]
     },
     {
       "id": "T17",
@@ -170,8 +208,10 @@
       "title": "Program wrappers: token-2022",
       "description": "Create src/programs/token-2022.ts. Extend token wrappers with token-2022 extension types: TransferFeeConfig, ConfidentialTransferMint, InterestBearingConfig, MintCloseAuthority, DefaultAccountState, etc.",
       "status": "pending",
-      "notes": "Source: _ref/token-2022/clients/js-v1/src/generated/. Most complex program — many extension types.",
-      "dependsOn": ["T16"]
+      "notes": "Source: _ref/token-2022/clients/js-v1/src/generated/. Most complex program \u2014 many extension types.",
+      "dependsOn": [
+        "T16"
+      ]
     },
     {
       "id": "T18",
@@ -181,7 +221,9 @@
       "description": "Create src/programs/associated-token.ts for ATA instruction types. Optionally add memo if worthwhile.",
       "status": "pending",
       "notes": "",
-      "dependsOn": ["T14"]
+      "dependsOn": [
+        "T14"
+      ]
     },
     {
       "id": "T19",
@@ -191,7 +233,12 @@
       "description": "Verify all Codama-generated program types flatten properly. Special attention to generic-heavy instruction types with 4+ type params.",
       "status": "pending",
       "notes": "Codama types may need per-instruction treatment rather than blanket Prettify if generics interact poorly.",
-      "dependsOn": ["T15", "T16", "T17", "T18"]
+      "dependsOn": [
+        "T15",
+        "T16",
+        "T17",
+        "T18"
+      ]
     },
     {
       "id": "T20",
@@ -201,7 +248,9 @@
       "description": "GitHub Actions workflow: type-check against latest Kit + program client releases. Run type compat tests. Weekly cron to catch breakage.",
       "status": "pending",
       "notes": "",
-      "dependsOn": ["T19"]
+      "dependsOn": [
+        "T19"
+      ]
     },
     {
       "id": "T21",
@@ -211,7 +260,9 @@
       "description": "Write README with: problem statement, before/after IDE screenshots, installation, usage examples, which types are covered. Add CONTRIBUTING.md.",
       "status": "pending",
       "notes": "",
-      "dependsOn": ["T19"]
+      "dependsOn": [
+        "T19"
+      ]
     },
     {
       "id": "T22",
@@ -221,7 +272,10 @@
       "description": "Publish to npm as solana-kit-prettified. Set up semantic versioning. Add provenance.",
       "status": "pending",
       "notes": "",
-      "dependsOn": ["T20", "T21"]
+      "dependsOn": [
+        "T20",
+        "T21"
+      ]
     }
   ]
 }
