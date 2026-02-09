@@ -1,6 +1,6 @@
 # Hover Test Results (Language Service QuickInfo)
 
-Generated: 2026-02-09T07:07:33.270Z
+Generated: 2026-02-09T07:52:20.301Z
 
 Shows what VS Code tooltips display for each type alias.
 Compare Original* vs Prettified* pairs — Prettified should show flat object shapes.
