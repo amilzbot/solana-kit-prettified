@@ -79,8 +79,8 @@
       "priority": 7,
       "title": "Core wrappers: rpc + codecs",
       "description": "Create src/core/rpc.ts wrapping Rpc, RpcSubscriptions, SolanaRpcApi, Lamports, Commitment, Slot, UnixTimestamp. Create src/core/codecs.ts wrapping Encoder, Decoder, Codec.",
-      "status": "pending",
-      "notes": "Lamports is branded bigint \u2014 same concern as Address with primitives. Rpc types are heavily generic.",
+      "status": "done",
+      "notes": "COMPLETED. Created src/core/rpc.ts and src/core/codecs.ts. Key findings: (1) Branded primitives (Lamports, MicroLamports, UnixTimestamp) pass through Prettify unchanged via primitive guard — re-exported directly. (2) Simple aliases (Slot, Epoch, Commitment) need no prettification — just re-exports. (3) Rpc<T>, RpcApi<T>, PendingRpcRequest<T> are mapped/generic types, not intersections — Prettify adds no tooltip value, re-exported only. (4) SolanaRpcResponse is the only type worth prettifying (Readonly intersection flattens nicely) — created PrettySolanaRpcResponse<TValue>. (5) Cluster URL types (MainnetUrl, DevnetUrl, TestnetUrl) are branded strings — pass through unchanged. (6) Codec types (Encoder, Decoder, Codec + Fixed/Variable variants) are union types of clean interfaces — no prettification value, re-exported for convenience. Also re-exported coercion functions (lamports, mainnet, devnet, testnet, etc.) and codec utilities (createEncoder, isFixedSize, etc.). Updated index.ts barrel. Typechecks clean.",
       "dependsOn": [
         "T02"
       ]
