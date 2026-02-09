@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Weekly: Monday 08:00 UTC — catch Kit breakage early
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+
+jobs:
+  typecheck-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install --include=dev
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Type compatibility tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+  latest-kit:
+    name: Test against latest @solana/kit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --include=dev
+
+      - name: Upgrade Kit packages to latest
+        run: |
+          npm install --save-dev \
+            @solana/kit@latest \
+            @solana/kit-plugins@latest \
+            @solana-program/system@latest \
+            @solana-program/token@latest \
+            @solana-program/token-2022@latest \
+            @solana-program/memo@latest \
+            2>/dev/null || true
+
+      - name: Typecheck against latest
+        run: npm run typecheck
+
+      - name: Type compatibility tests
+        run: npm test
