@@ -55,8 +55,8 @@
       "priority": 5,
       "title": "Core wrappers: instructions",
       "description": "Create src/core/instructions.ts wrapping Instruction, AccountMeta, AccountLookupMeta, InstructionWithAccounts, InstructionWithData. Instruction is an interface (less benefit) but combined types are intersections.",
-      "status": "pending",
-      "notes": "Source: packages/instructions/src/. Instruction interface has accounts?, data?, programAddress. The combined types (InstructionWithAccounts & InstructionWithData) are the real targets.",
+      "status": "done",
+      "notes": "COMPLETED. Created src/core/instructions.ts with: PrettyAccountMeta, PrettyReadonlyAccount, PrettyWritableAccount, PrettyReadonlySignerAccount, PrettyWritableSignerAccount, PrettyAccountLookupMeta, PrettyReadonlyAccountLookup, PrettyWritableAccountLookup, PrettyInstruction, PrettyInstructionWithAccounts, PrettyInstructionWithData, PrettyCombinedInstruction. The subtype account metas (ReadonlyAccount, WritableAccount, etc.) are intersections of AccountMeta & { role: specific } — good Prettify targets. Added PrettyCombinedInstruction as a convenience type for the common Codama pattern (Instruction & InstructionWithAccounts & InstructionWithData). AccountRole re-exported as enum (no prettification needed). All originals re-exported. Typechecks clean.",
       "dependsOn": [
         "T02"
       ]
