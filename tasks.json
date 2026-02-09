@@ -67,8 +67,8 @@
       "priority": 6,
       "title": "Core wrappers: transaction-messages + transactions",
       "description": "Create src/core/transaction-messages.ts wrapping TransactionMessage, TransactionMessageWithFeePayer, CompilableTransactionMessage. Create src/core/transactions.ts wrapping Transaction, FullySignedTransaction.",
-      "status": "pending",
-      "notes": "TransactionMessage source: packages/transaction-messages/src/transaction-message.ts. It's a union of LegacyTransactionMessage | V0TransactionMessage. TransactionMessageWithFeePayer adds feePayer via intersection.",
+      "status": "done",
+      "notes": "COMPLETED. Created src/core/transaction-messages.ts with: PrettyTransactionMessage, PrettyTransactionMessageWithFeePayer, PrettyBlockhashLifetimeConstraint, PrettyTransactionMessageWithBlockhashLifetime, PrettyNonceLifetimeConstraint, PrettyTransactionMessageWithDurableNonceLifetime, PrettyTransactionMessageWithLifetime, PrettyCompilableTransactionMessage (highest-value: flattens TransactionMessage & FeePayer & BlockhashLifetime intersection), PrettyCompilableTransactionMessageWithDurableNonce. Created src/core/transactions.ts with: PrettyTransaction, PrettyTransactionBlockhashLifetime, PrettyTransactionDurableNonceLifetime, PrettyTransactionWithLifetime, PrettyTransactionWithBlockhashLifetime, PrettyTransactionWithDurableNonceLifetime, PrettyFullySignedTransactionWithBlockhashLifetime, PrettySendableTransactionWithBlockhashLifetime. Nonce (branded string) passes through Prettify unchanged via primitive guard. FullySignedTransaction is a NominalType brand — also passes through. TransactionMessageBytes and Base64EncodedWireTransaction are branded Uint8Array/string — re-exported only. All originals re-exported. Typechecks clean.",
       "dependsOn": [
         "T02"
       ]
