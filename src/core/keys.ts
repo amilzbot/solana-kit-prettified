@@ -8,7 +8,7 @@
  * - TransactionSigner: union type — Prettify distributes over the union.
  * - MessageSigner: union type — same distribution behavior.
  */
-import type { Signature, SignatureBytes } from '@solana/keys';
+import type { Signature, SignatureBytes } from '@solana/kit';
 import type {
   KeyPairSigner,
   TransactionSigner,
@@ -18,7 +18,7 @@ import type {
   TransactionSendingSigner,
   MessagePartialSigner,
   MessageModifyingSigner,
-} from '@solana/signers';
+} from '@solana/kit';
 import type { Prettify } from '../prettify.js';
 
 /**
@@ -78,7 +78,7 @@ export type PrettyMessageModifyingSigner<TAddress extends string = string> = Pre
 export type {
   Signature,
   SignatureBytes,
-} from '@solana/keys';
+} from '@solana/kit';
 export type {
   KeyPairSigner,
   TransactionSigner,
@@ -88,4 +88,4 @@ export type {
   TransactionSendingSigner,
   MessagePartialSigner,
   MessageModifyingSigner,
-} from '@solana/signers';
+} from '@solana/kit';

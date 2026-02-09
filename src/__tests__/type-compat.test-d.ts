@@ -12,11 +12,11 @@ import { expectTypeOf, describe, it } from 'vitest';
 import { assertType } from 'vitest';
 
 // --- Core: Addresses ---
-import type { Address, ProgramDerivedAddress, ProgramDerivedAddressBump } from '@solana/addresses';
+import type { Address, ProgramDerivedAddress, ProgramDerivedAddressBump } from '@solana/kit';
 import type { PrettyAddress, PrettyProgramDerivedAddress, PrettyProgramDerivedAddressBump } from '../core/addresses.js';
 
 // --- Core: Keys ---
-import type { Signature, SignatureBytes } from '@solana/keys';
+import type { Signature, SignatureBytes } from '@solana/kit';
 import type {
   KeyPairSigner,
   TransactionSigner,
@@ -26,7 +26,7 @@ import type {
   TransactionSendingSigner,
   MessagePartialSigner,
   MessageModifyingSigner,
-} from '@solana/signers';
+} from '@solana/kit';
 import type {
   PrettySignature,
   PrettySignatureBytes,
@@ -41,7 +41,7 @@ import type {
 } from '../core/keys.js';
 
 // --- Core: Accounts ---
-import type { Account, EncodedAccount, MaybeAccount, MaybeEncodedAccount, BaseAccount } from '@solana/accounts';
+import type { Account, EncodedAccount, MaybeAccount, MaybeEncodedAccount, BaseAccount } from '@solana/kit';
 import type {
   PrettyAccount,
   PrettyEncodedAccount,
@@ -59,7 +59,7 @@ import type {
   WritableAccount as WritableAccountMeta,
   ReadonlySignerAccount,
   WritableSignerAccount,
-} from '@solana/instructions';
+} from '@solana/kit';
 import type {
   PrettyAccountMeta,
   PrettyAccountLookupMeta,
@@ -76,7 +76,7 @@ import type {
   TransactionMessageWithFeePayer,
   TransactionMessageWithBlockhashLifetime,
   BlockhashLifetimeConstraint,
-} from '@solana/transaction-messages';
+} from '@solana/kit';
 import type {
   PrettyTransactionMessage,
   PrettyTransactionMessageWithFeePayer,
@@ -86,7 +86,7 @@ import type {
 } from '../core/transaction-messages.js';
 
 // --- Core: Transactions ---
-import type { Transaction } from '@solana/transactions';
+import type { Transaction } from '@solana/kit';
 import type { PrettyTransaction } from '../core/transactions.js';
 
 // --- Core: RPC ---

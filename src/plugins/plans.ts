@@ -6,7 +6,7 @@
  * in IDE tooltips, showing clean flat shapes. The recursive union types (TransactionPlan,
  * InstructionPlan, TransactionPlanResult) distribute Prettify over each variant.
  */
-import type { Instruction } from '@solana/instructions';
+import type { Instruction } from '@solana/kit';
 import type {
   // Instruction Plans
   InstructionPlan,
@@ -40,8 +40,8 @@ import type {
   TransactionPlanExecutorConfig,
   TransactionPlanner,
   TransactionPlannerConfig,
-} from '@solana/instruction-plans';
-import type { TransactionMessage, TransactionMessageWithFeePayer } from '@solana/transaction-messages';
+} from '@solana/kit';
+import type { TransactionMessage, TransactionMessageWithFeePayer } from '@solana/kit';
 import type { Prettify } from '../prettify.js';
 
 // ——— Instruction Plans ———
@@ -171,4 +171,4 @@ export type {
   TransactionPlanExecutorConfig,
   TransactionPlanner,
   TransactionPlannerConfig,
-} from '@solana/instruction-plans';
+} from '@solana/kit';

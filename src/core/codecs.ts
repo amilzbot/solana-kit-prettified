@@ -24,7 +24,7 @@ export type {
   FixedSizeCodec,
   VariableSizeCodec,
   Offset,
-} from '@solana/codecs-core';
+} from '@solana/kit';
 
 // === Codec utility functions ===
 export {
@@ -36,7 +36,7 @@ export {
   isVariableSize,
   assertIsFixedSize,
   assertIsVariableSize,
-} from '@solana/codecs-core';
+} from '@solana/kit';
 
 // === ReadonlyUint8Array (commonly needed with codecs) ===
-export type { ReadonlyUint8Array } from '@solana/codecs-core';
+export type { ReadonlyUint8Array } from '@solana/kit';

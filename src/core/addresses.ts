@@ -7,7 +7,7 @@
  *
  * ProgramDerivedAddressBump is a branded number — also preserved unchanged.
  */
-import type { Address, ProgramDerivedAddress, ProgramDerivedAddressBump } from '@solana/addresses';
+import type { Address, ProgramDerivedAddress, ProgramDerivedAddressBump } from '@solana/kit';
 import type { Prettify } from '../prettify.js';
 
 /**
@@ -29,4 +29,4 @@ export type PrettyProgramDerivedAddress<TAddress extends string = string> = Pret
 export type PrettyProgramDerivedAddressBump = Prettify<ProgramDerivedAddressBump>;
 
 // Re-export originals for convenience
-export type { Address, ProgramDerivedAddress, ProgramDerivedAddressBump } from '@solana/addresses';
+export type { Address, ProgramDerivedAddress, ProgramDerivedAddressBump } from '@solana/kit';

@@ -1,5 +1,5 @@
-import type { Account, BaseAccount, EncodedAccount } from '@solana/accounts';
-import type { MaybeAccount, MaybeEncodedAccount } from '@solana/accounts';
+import type { Account, BaseAccount, EncodedAccount } from '@solana/kit';
+import type { MaybeAccount, MaybeEncodedAccount } from '@solana/kit';
 import type { Prettify } from '../prettify.js';
 
 /**
@@ -37,4 +37,4 @@ export type PrettyMaybeEncodedAccount<TAddress extends string = string> = Pretti
 export type PrettyBaseAccount = Prettify<BaseAccount>;
 
 // Re-export originals
-export type { Account, BaseAccount, EncodedAccount, MaybeAccount, MaybeEncodedAccount } from '@solana/accounts';
+export type { Account, BaseAccount, EncodedAccount, MaybeAccount, MaybeEncodedAccount } from '@solana/kit';

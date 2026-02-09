@@ -9,7 +9,7 @@
  * fairly clean in tooltips, but we provide Pretty* versions for consistency and
  * for cases where they appear in intersections.
  */
-import type { ReadonlyUint8Array } from '@solana/codecs-core';
+import type { ReadonlyUint8Array } from '@solana/kit';
 import type {
     AccountLookupMeta,
     AccountMeta,
@@ -22,7 +22,7 @@ import type {
     WritableAccount,
     WritableAccountLookup,
     WritableSignerAccount,
-} from '@solana/instructions';
+} from '@solana/kit';
 
 import type { Prettify } from '../prettify.js';
 
@@ -109,4 +109,4 @@ export type {
     WritableAccount,
     WritableAccountLookup,
     WritableSignerAccount,
-} from '@solana/instructions';
+} from '@solana/kit';

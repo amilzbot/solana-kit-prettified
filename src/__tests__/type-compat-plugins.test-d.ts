@@ -31,7 +31,7 @@ import type {
   SuccessfulBaseTransactionPlanResultContext,
   TransactionPlanExecutorConfig,
   TransactionPlannerConfig,
-} from '@solana/instruction-plans';
+} from '@solana/kit';
 import type {
   PrettySingleInstructionPlan,
   PrettySequentialInstructionPlan,

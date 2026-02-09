@@ -20,7 +20,7 @@ import type {
   SendableTransaction,
   TransactionWithinSizeLimit,
   Base64EncodedWireTransaction,
-} from '@solana/transactions';
+} from '@solana/kit';
 import type { Prettify } from '../prettify.js';
 
 /** Transaction with flattened type for readable IDE tooltips. */
@@ -72,4 +72,4 @@ export type {
   SendableTransaction,
   TransactionWithinSizeLimit,
   Base64EncodedWireTransaction,
-} from '@solana/transactions';
+} from '@solana/kit';

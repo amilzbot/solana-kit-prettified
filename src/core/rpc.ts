@@ -17,14 +17,14 @@ import type { Prettify } from '../prettify';
 // === Re-exports from @solana/rpc-types (no prettification needed) ===
 
 // Simple aliases — already plain types
-export type { Commitment, Slot, Epoch, F64UnsafeSeeDocumentation, SignedLamports } from '@solana/rpc-types';
+export type { Commitment, Slot, Epoch, F64UnsafeSeeDocumentation, SignedLamports } from '@solana/kit';
 
 // Branded primitives — pass through Prettify unchanged (bigint base)
 // Re-export directly since Prettify<Lamports> === Lamports
-export type { Lamports, MicroLamports, UnixTimestamp } from '@solana/rpc-types';
+export type { Lamports, MicroLamports, UnixTimestamp } from '@solana/kit';
 
 // Cluster URL types — branded string intersections
-export type { ClusterUrl, MainnetUrl, DevnetUrl, TestnetUrl } from '@solana/rpc-types';
+export type { ClusterUrl, MainnetUrl, DevnetUrl, TestnetUrl } from '@solana/kit';
 
 // Coercion/guard functions
 export {
@@ -37,7 +37,7 @@ export {
   mainnet,
   devnet,
   testnet,
-} from '@solana/rpc-types';
+} from '@solana/kit';
 
 // === Prettified types ===
 
@@ -53,15 +53,15 @@ export type PrettySolanaRpcResponse<TValue> = Prettify<
 >;
 
 // Re-export original for reference
-export type { SolanaRpcResponse } from '@solana/rpc-types';
+export type { SolanaRpcResponse } from '@solana/kit';
 
 // === Re-exports from @solana/rpc-spec (no prettification needed) ===
 
 // These are mapped/generic types where Prettify adds no tooltip value
-export type { Rpc, PendingRpcRequest, RpcSendOptions, RpcConfig } from '@solana/rpc-spec';
-export type { RpcApi, RpcPlan, RpcApiConfig } from '@solana/rpc-spec';
-export { createRpc, createJsonRpcApi } from '@solana/rpc-spec';
+export type { Rpc, PendingRpcRequest, RpcSendOptions, RpcConfig } from '@solana/kit';
+export type { RpcApi, RpcPlan, RpcApiConfig } from '@solana/kit';
+export { createRpc, createJsonRpcApi } from '@solana/kit';
 
 // === Re-exports from @solana/rpc (convenience) ===
 
-export { createSolanaRpc, createSolanaRpcFromTransport } from '@solana/rpc';
+export { createSolanaRpc, createSolanaRpcFromTransport } from '@solana/kit';

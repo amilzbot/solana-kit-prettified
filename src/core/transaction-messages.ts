@@ -17,7 +17,7 @@ import type {
   Nonce,
   TransactionMessageWithLifetime,
   TransactionMessageWithinSizeLimit,
-} from '@solana/transaction-messages';
+} from '@solana/kit';
 import type { Prettify } from '../prettify.js';
 
 /** TransactionMessage with flattened type for readable IDE tooltips. */
@@ -83,4 +83,4 @@ export type {
   Nonce,
   TransactionMessageWithLifetime,
   TransactionMessageWithinSizeLimit,
-} from '@solana/transaction-messages';
+} from '@solana/kit';
